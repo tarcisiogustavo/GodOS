@@ -13,10 +13,12 @@ func _init() -> void:
 
 func _ready() -> void:
   _server.start()
-  
+
   _server.peer_connected.connect(_peer_connected)
   _server.peer_disconnected.connect(_peer_disconnected)
   _server.packet_received.connect(_packet_received)
+
+  print("Servidor iniciado na porta: ", ServerConstants.port)
 
 
 func _process(_delta: float) -> void:

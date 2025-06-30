@@ -15,7 +15,6 @@ func _init() -> void:
 
 func _ready() -> void:
   _client_button.pressed.connect(_on_client_button_pressed)
-
   _server_button.pressed.connect(_on_server_button_pressed)
 
 

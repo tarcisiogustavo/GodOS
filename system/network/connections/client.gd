@@ -4,7 +4,7 @@ extends RefCounted
 
 signal peer_connected()
 signal peer_disconnected()
-signal packet_received(buffer: PackedByteArray)
+signal packet_received(packet_data: PackedByteArray)
 
 
 var _client_connection: ENetConnection

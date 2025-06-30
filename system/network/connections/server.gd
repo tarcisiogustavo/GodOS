@@ -26,7 +26,7 @@ func start() -> void:
 	var error: Error = _server_connection.create_host_bound(host, port, max_peers)
 	if error != OK:
 		return
-
+	
 
 func update() -> void:
 	if _server_connection == null: return
