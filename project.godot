@@ -16,6 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Network="*res://system/network/network.gd"
 ClientConstants="*res://system/constants/client.gd"
 ServerConstants="*res://system/constants/server.gd"
 ClientGlobals="*res://system/globals/client.gd"
