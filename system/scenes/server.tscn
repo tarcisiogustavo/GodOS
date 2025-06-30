@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://vcaookngaag1"]
+
+[ext_resource type="Script" uid="uid://cde3eqqejtm3y" path="res://system/scenes/server.gd" id="1_7ti4s"]
+
+[node name="Server" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7ti4s")

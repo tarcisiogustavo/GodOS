@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsoreg42608ap"]
+[gd_scene load_steps=2 format=3 uid="uid://bjme20ju48ic3"]
 
-[ext_resource type="Script" uid="uid://dumknkp25eoc7" path="res://main.gd" id="1_ig7tw"]
+[sub_resource type="GDScript" id="GDScript_7dm0k"]
+script/source = "class_name Main
+extends Node2D
+"
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_ig7tw")
+script = SubResource("GDScript_7dm0k")
