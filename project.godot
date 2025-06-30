@@ -1,0 +1,26 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="godos"
+config/features=PackedStringArray("4.4", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+ClientConstants="*res://system/constants/client.gd"
+ServerConstants="*res://system/constants/server.gd"
+ClientGlobals="*res://system/globals/client.gd"
+ServerGlobals="*res://system/globals/server.gd"
+
+[rendering]
+
+renderer/rendering_method="mobile"
