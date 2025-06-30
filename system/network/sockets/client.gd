@@ -8,14 +8,23 @@ signal packet_received(buffer: PackedByteArray)
 
 
 var _socket: ENetConnection
+var _peer: ENetPacketPeer
 
 
 func _is_connected() -> bool:
-	return _socket != null and ClientGlobals.peer != null and ClientGlobals.peer.get_state() == ENetPacketPeer.STATE_CONNECTED
+	return _socket != null and _peer != null and _peer.get_state() == ENetPacketPeer.STATE_CONNECTED
 
 
 func connect_to_server() -> void:
-	pass
+	if _is_connected():
+		return
+	
+	_socket = ENetConnection.new()
+	
+	var error: Error = _socket.create_host()
+	if error != OK: return
+	
+	_peer = _socket.connect_to_host(ClientConstants.host, ClientConstants.port)
 
 
 func process() -> void:
@@ -58,7 +67,7 @@ func send(packet_id: int, packet_args := [], channel: int = 0) -> void:
 	if not _is_connected():
 		return
 
-	var peer: ENetPacketPeer = ClientGlobals.peer
+	var peer: ENetPacketPeer = _peer
 	var data: PackedByteArray = var_to_bytes([packet_id, packet_args])
 	var flag: int = ENetPacketPeer.FLAG_RELIABLE
 
