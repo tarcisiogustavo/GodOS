@@ -2,57 +2,60 @@ class_name Client
 extends RefCounted
 
 
-signal connected()
-signal disconnected()
+signal peer_connected()
+signal peer_disconnected()
 signal packet_received(buffer: PackedByteArray)
 
 
-var _socket: ENetConnection
+var _client_connection: ENetConnection
 var _peer: ENetPacketPeer
 
 
 func _is_connected() -> bool:
-	return _socket != null and _peer != null and _peer.get_state() == ENetPacketPeer.STATE_CONNECTED
+	return _client_connection != null and _peer != null and _peer.get_state() == ENetPacketPeer.STATE_CONNECTED
 
 
 func connect_to_server() -> void:
 	if _is_connected():
 		return
 	
-	_socket = ENetConnection.new()
+	_client_connection = ENetConnection.new()
 	
-	var error: Error = _socket.create_host()
+	var error: Error = _client_connection.create_host()
 	if error != OK: return
 	
-	_peer = _socket.connect_to_host(ClientConstants.host, ClientConstants.port)
+	const host: String = ClientConstants.host
+	const port: int = ClientConstants.port
+	
+	_peer = _client_connection.connect_to_host(host, port)
 
 
-func process() -> void:
-	if _socket == null : return
+func update() -> void:
+	if _client_connection == null: return
 
-	var event: Array = _socket.service()
-	if event.size() == 0 : return
+	var event: Array = _client_connection.service()
+	if event.size() == 0: return
 
 	match event[0]:
 		ENetConnection.EventType.EVENT_ERROR:
 			return
 
 		ENetConnection.EventType.EVENT_CONNECT:
-			_on_connected(event[1])
+			_on_connected()
 
 		ENetConnection.EventType.EVENT_DISCONNECT:
-			_on_disconnected(event[1])
+			_on_disconnected()
 
 		ENetConnection.EventType.EVENT_RECEIVE:
 			_on_packet_received(event[1])
 
 
-func _on_connected(_peer: ENetPacketPeer) -> void:
-	connected.emit()
+func _on_connected() -> void:
+	peer_connected.emit()
 
 
-func _on_disconnected(_peer: ENetPacketPeer) -> void:
-	disconnected.emit()
+func _on_disconnected() -> void:
+	peer_disconnected.emit()
 
 
 func _on_packet_received(peer: ENetPacketPeer) -> void:
