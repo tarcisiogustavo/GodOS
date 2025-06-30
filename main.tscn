@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjme20ju48ic3"]
+[gd_scene load_steps=2 format=3 uid="uid://c5jalf7t8o1mm"]
 
 [sub_resource type="GDScript" id="GDScript_7dm0k"]
 script/source = "class_name Main
