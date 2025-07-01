@@ -1,0 +1,31 @@
+class_name SignIn
+extends PanelContainer
+
+
+@export var email_input: LineEdit
+@export var password_input: LineEdit
+@export var sign_in_button: Button
+@export var sign_up_button: Button
+
+
+func _ready() -> void:
+	sign_in_button.pressed.connect(_on_sign_in_button_pressed)
+	sign_up_button.pressed.connect(_on_sign_up_button_pressed)
+
+
+func _on_sign_in_button_pressed() -> void:
+	var email: String = email_input.text
+	var password: String = password_input.text
+
+	if email.length() <= 6:
+		return
+
+	if password.length() < 3:
+		return
+
+  # Chamada para o servidor
+
+
+func _on_sign_up_button_pressed() -> void:
+	ClientGlobals.menu_interface.show_interface("SignUp")
+	ClientGlobals.menu_interface.hide_interface("SignIn")

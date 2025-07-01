@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://spkp0e5aemdw"]
+
+[ext_resource type="Script" uid="uid://ce671lfx6egew" path="res://database/interfaces/sign_in/sign_in.gd" id="1_kqu1q"]
+
+[node name="SignIn" type="PanelContainer" node_paths=PackedStringArray("email_input", "password_input", "sign_in_button", "sign_up_button")]
+offset_right = 350.0
+offset_bottom = 66.0
+script = ExtResource("1_kqu1q")
+email_input = NodePath("MarginContainer/Content/Inputs/Email/EmailInput")
+password_input = NodePath("MarginContainer/Content/Inputs/Password/PasswordInput")
+sign_in_button = NodePath("MarginContainer/Content/HBoxContainer/SignIn")
+sign_up_button = NodePath("MarginContainer/Content/HBoxContainer/SignUp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Inputs" type="VBoxContainer" parent="MarginContainer/Content"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="Email" type="HBoxContainer" parent="MarginContainer/Content/Inputs"]
+layout_mode = 2
+
+[node name="EmailLabel" type="Label" parent="MarginContainer/Content/Inputs/Email"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Email:"
+
+[node name="EmailInput" type="LineEdit" parent="MarginContainer/Content/Inputs/Email"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+tooltip_text = "Email"
+
+[node name="Password" type="HBoxContainer" parent="MarginContainer/Content/Inputs"]
+layout_mode = 2
+
+[node name="PasswordLabel" type="Label" parent="MarginContainer/Content/Inputs/Password"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Password"
+
+[node name="PasswordInput" type="LineEdit" parent="MarginContainer/Content/Inputs/Password"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+tooltip_text = "Password"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Content"]
+layout_mode = 2
+
+[node name="SignUp" type="Button" parent="MarginContainer/Content/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cadastrar"
+
+[node name="SignIn" type="Button" parent="MarginContainer/Content/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Acessar"
