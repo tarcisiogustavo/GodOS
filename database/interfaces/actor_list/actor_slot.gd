@@ -1,4 +1,4 @@
-class_name ActorSlot
+class_name ActorSlotInterface
 extends PanelContainer
 
 

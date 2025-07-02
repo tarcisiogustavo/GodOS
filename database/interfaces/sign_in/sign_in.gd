@@ -1,4 +1,4 @@
-class_name SignIn
+class_name SignInInterface
 extends PanelContainer
 
 
@@ -18,9 +18,11 @@ func _on_sign_in_button_pressed() -> void:
 	var password: String = password_input.text
 
 	if email.length() <= 6:
+		Notification.show("O email precisa ter ao menos 6 caracteres.")
 		return
 
 	if password.length() < 3:
+		Notification.show("A senha precisa ter ao menos 3 caracteres.")
 		return
 
   # Chamada para o servidor

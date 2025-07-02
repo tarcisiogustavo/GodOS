@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func _on_client_button_pressed() -> void:
   var scene: Control = _client_scene.instantiate()
-  scene.name = "client"
+  scene.name = "Client"
 
   get_tree().root.add_child(scene)
   queue_free()
@@ -28,7 +28,7 @@ func _on_client_button_pressed() -> void:
 
 func _on_server_button_pressed() -> void:
   var scene: Control = _server_scene.instantiate()
-  scene.name = "server"
+  scene.name = "Server"
 
   get_tree().root.add_child(scene)
   queue_free()

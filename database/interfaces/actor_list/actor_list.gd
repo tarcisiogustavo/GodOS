@@ -1,4 +1,4 @@
-class_name ActorList
+class_name ActorListInterface
 extends PanelContainer
 
 
