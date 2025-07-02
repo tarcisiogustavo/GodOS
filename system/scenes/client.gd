@@ -7,31 +7,34 @@ var _handler: Handler
 
 
 func _init() -> void:
-  _client = Network.client
-  _handler = Handler.new([])
+	_client = Network.client
+	_handler = Handler.new([
+		ClientSignInPacket.new(),
+		ClientSignUpPacket.new()
+	])
 
 
 func _ready() -> void:
-  _client.connect_to_server()
+	_client.connect_to_server()
 
-  _client.peer_connected.connect(_peer_connected)
-  _client.peer_disconnected.connect(_peer_disconnected)
-  _client.packet_received.connect(_packet_received)
+	_client.peer_connected.connect(_peer_connected)
+	_client.peer_disconnected.connect(_peer_disconnected)
+	_client.packet_received.connect(_packet_received)
 
-  print("Cliente iniciado na porta: ", ClientConstants.port)
+	print("Cliente iniciado na porta: ", ClientConstants.port)
 
 
 func _process(_delta: float) -> void:
-  _client.update()
+	_client.update()
 
 
 func _peer_connected() -> void:
-  pass
+	pass
 
 
 func _peer_disconnected() -> void:
-  pass
+	pass
 
-  
+
 func _packet_received(packet_data: PackedByteArray) -> void:
-  _handler.handle(get_tree(), packet_data)
+	_handler.handle(get_tree(), packet_data)

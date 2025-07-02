@@ -36,6 +36,6 @@ func _on_sign_up_button_pressed() -> void:
 	ClientGlobals.menu_interface.hide_interface("SignIn")
 
 
-func reset_buttons_state() -> void:
+func reset_form() -> void:
 	sign_in_button.disabled = false
 	sign_up_button.disabled = false

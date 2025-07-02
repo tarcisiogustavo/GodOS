@@ -26,7 +26,7 @@ func start() -> void:
 	var error: Error = _server_connection.create_host_bound(host, port, max_peers)
 	if error != OK:
 		return
-	
+
 
 func update() -> void:
 	if _server_connection == null: return
@@ -76,14 +76,14 @@ func _find_connection(peer: ENetPacketPeer) -> Dictionary:
 func disconnect_peer(peer_id: int) -> void:
 	if peer_id < 0 or peer_id >= ServerGlobals.connections.size():
 		return
-	
+
 	var connection: Dictionary = ServerGlobals.connections[peer_id]
 	if connection.is_empty(): return
 	if not connection.has("peer"): return
-	
+
 	var peer: ENetPacketPeer = connection["peer"]
 	peer.peer_disconnect_later()
-	
+
 	_remove_peer(peer_id)
 	peer_disconnected.emit(peer_id)
 
@@ -100,7 +100,7 @@ func _on_disconnected(peer: ENetPacketPeer) -> void:
 	var id: int = connection.get("id", -1)
 	if id == -1:
 		return
-	
+
 	_remove_peer(id)
 	peer_disconnected.emit(id)
 
@@ -113,20 +113,20 @@ func _on_packet_received(peer: ENetPacketPeer) -> void:
 
 	var packet_data: PackedByteArray = peer.get_packet()
 	if packet_data.size() > 0:
-			packet_received.emit(id, packet_data)
+		packet_received.emit(id, packet_data)
 
 
 func send_to(peer_id: int, packet_id: int, packet_data := [], channel: int = 0) -> void:
 	if peer_id < 0 or peer_id >= ServerGlobals.connections.size():
 		return
-	
+
 	var connection: Dictionary = ServerGlobals.connections[peer_id]
 	if connection.is_empty():
 		return
-	
+
 	if not connection.has("peer"):
 		return
-	
+
 	var peer: ENetPacketPeer = connection["peer"]
 	peer.send(channel, var_to_bytes([packet_id, packet_data]), ENetPacketPeer.FLAG_RELIABLE)
 

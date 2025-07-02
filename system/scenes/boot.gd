@@ -9,26 +9,26 @@ extends Control
 
 
 func _init() -> void:
-  _client_scene = preload("res://system/scenes/client.tscn")
-  _server_scene = preload("res://system/scenes/server.tscn")
+	_client_scene = preload("res://system/scenes/client.tscn")
+	_server_scene = preload("res://system/scenes/server.tscn")
 
 
 func _ready() -> void:
-  _client_button.pressed.connect(_on_client_button_pressed)
-  _server_button.pressed.connect(_on_server_button_pressed)
+	_client_button.pressed.connect(_on_client_button_pressed)
+	_server_button.pressed.connect(_on_server_button_pressed)
 
 
 func _on_client_button_pressed() -> void:
-  var scene: Control = _client_scene.instantiate()
-  scene.name = "Client"
+	var scene: Control = _client_scene.instantiate()
+	scene.name = "Client"
 
-  get_tree().root.add_child(scene)
-  queue_free()
+	get_tree().root.add_child(scene)
+	queue_free()
 
 
 func _on_server_button_pressed() -> void:
-  var scene: Control = _server_scene.instantiate()
-  scene.name = "Server"
+	var scene: Control = _server_scene.instantiate()
+	scene.name = "Server"
 
-  get_tree().root.add_child(scene)
-  queue_free()
+	get_tree().root.add_child(scene)
+	queue_free()

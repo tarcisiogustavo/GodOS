@@ -42,6 +42,10 @@ func _on_back_button_pressed() -> void:
 	ClientGlobals.menu_interface.hide_interface("SignUp")
 
 
-func reset_buttons_state() -> void:
+func reset_form() -> void:
+	email_input.text = ""
+	password_input.text = ""
+	re_password_input.text = ""
+	
 	back_button.disabled = false
 	sign_up_button.disabled = false

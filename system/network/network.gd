@@ -6,5 +6,5 @@ var server: Server
 
 
 func _init() -> void:
-  client = Client.new()
-  server = Server.new()
+	client = Client.new()
+	server = Server.new()

@@ -18,15 +18,15 @@ func _is_connected() -> bool:
 func connect_to_server() -> void:
 	if _is_connected():
 		return
-	
+
 	_client_connection = ENetConnection.new()
-	
+
 	var error: Error = _client_connection.create_host()
 	if error != OK: return
-	
+
 	const host: String = ClientConstants.host
 	const port: int = ClientConstants.port
-	
+
 	_peer = _client_connection.connect_to_host(host, port)
 
 
