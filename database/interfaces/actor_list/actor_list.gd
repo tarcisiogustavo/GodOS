@@ -22,9 +22,9 @@ func update_slot(max_actors: int, actors: Array) -> void:
 		var has_character = i < actors.size() and actors[i] != null
 
 		if has_character:
-			slot_instance.name_label.text = actors[i]["name"]
+			slot_instance.actor_data = actors[i]
 		else:
-			slot_instance.name_label.text = ""
+			slot_instance.actor_data = {}
 
 		if slot_instance.has_method("set_has_character"):
 			slot_instance.set_has_character(has_character)

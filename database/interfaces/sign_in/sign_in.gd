@@ -25,9 +25,17 @@ func _on_sign_in_button_pressed() -> void:
 		Notification.show("A senha precisa ter ao menos 3 caracteres.")
 		return
 
-  # Chamada para o servidor
+	sign_in_button.disabled = true
+	sign_up_button.disabled = true
+
+	Network.client.send(Packets.SIGN_IN, [email, password, ClientConstants.version])
 
 
 func _on_sign_up_button_pressed() -> void:
 	ClientGlobals.menu_interface.show_interface("SignUp")
 	ClientGlobals.menu_interface.hide_interface("SignIn")
+
+
+func reset_buttons_state() -> void:
+	sign_in_button.disabled = false
+	sign_up_button.disabled = false

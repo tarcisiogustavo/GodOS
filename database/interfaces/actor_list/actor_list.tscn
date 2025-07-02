@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bafgnqlsr0gh5"]
+[gd_scene load_steps=3 format=3 uid="uid://bafgnqlsr0gh5"]
 
 [ext_resource type="Script" uid="uid://m2rdrngf8yhc" path="res://database/interfaces/actor_list/actor_list.gd" id="1_nmf1w"]
+[ext_resource type="PackedScene" uid="uid://ltfmd5g1riu7" path="res://database/interfaces/actor_list/actor_slot.tscn" id="2_naasl"]
 
 [node name="ActorList" type="PanelContainer" node_paths=PackedStringArray("slots_location")]
 offset_right = 500.0
@@ -18,3 +19,9 @@ theme_override_constants/margin_bottom = 10
 [node name="Content" type="HBoxContainer" parent="Margin"]
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="Slot" parent="Margin/Content" instance=ExtResource("2_naasl")]
+layout_mode = 2
+
+[node name="Slot2" parent="Margin/Content" instance=ExtResource("2_naasl")]
+layout_mode = 2

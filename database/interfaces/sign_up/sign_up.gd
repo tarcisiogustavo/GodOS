@@ -31,9 +31,17 @@ func _on_sign_up_button_pressed() -> void:
 		Notification.show("A senha informada não corresponde à confirmação.")
 		return
 
-  # Chamada para o servidor
+	back_button.disabled = true
+	sign_up_button.disabled = true
+
+	Network.client.send(Packets.SIGN_UP, [email, password, ClientConstants.version])
 
 
 func _on_back_button_pressed() -> void:
 	ClientGlobals.menu_interface.show_interface("SignIn")
 	ClientGlobals.menu_interface.hide_interface("SignUp")
+
+
+func reset_buttons_state() -> void:
+	back_button.disabled = false
+	sign_up_button.disabled = false

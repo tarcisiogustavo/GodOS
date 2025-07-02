@@ -8,6 +8,9 @@ extends PanelContainer
 @export var delete_button: Button
 
 
+var actor_data: Dictionary = {}
+
+
 func _ready() -> void:
 	access_button.pressed.connect(_on_access_button_pressed)
 	new_button.pressed.connect(_on_new_button_pressed)
@@ -19,12 +22,13 @@ func set_has_character(has_character: bool) -> void:
 
 
 func _on_access_button_pressed() -> void:
-	pass
+	Network.client.send(Packets.SELECT_ACTOR, [actor_data["id"]])
 
 
 func _on_new_button_pressed() -> void:
-	pass
+	ClientGlobals.menu_interface.show_interface("CreateActor")
+	ClientGlobals.menu_interface.hide_interface("ActorList")
 
 
 func _on_delete_button_pressed() -> void:
-	pass
+	Network.client.send(Packets.DELETE_ACTOR, [actor_data["id"]])
