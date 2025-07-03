@@ -38,8 +38,11 @@ func _on_sign_up_button_pressed() -> void:
 
 
 func _on_back_button_pressed() -> void:
-	ClientGlobals.menu_interface.show_interface("SignIn")
-	ClientGlobals.menu_interface.hide_interface("SignUp")
+	var sign_in_interface: SignInInterface = get_tree().root.get_node("Client/MenuCanvas/SignIn")
+	var sign_up_interface: SignUpInterface = get_tree().root.get_node("Client/MenuCanvas/SignUp")
+
+	sign_in_interface.show()
+	sign_up_interface.hide()
 
 
 func reset_form() -> void:

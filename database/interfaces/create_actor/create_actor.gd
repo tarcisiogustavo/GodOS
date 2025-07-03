@@ -23,5 +23,8 @@ func _on_create_button_pressed() -> void:
 
 
 func _on_back_button_pressed() -> void:
-	ClientGlobals.menu_interface.show_interface("ActorList")
-	ClientGlobals.menu_interface.hide_interface("CreateActor")
+	var actor_list_interface: SignInInterface = get_tree().root.get_node("Client/MenuCanvas/ActorList")
+	var create_actor_interface: SignUpInterface = get_tree().root.get_node("Client/MenuCanvas/CreateActor")
+
+	actor_list_interface.show()
+	create_actor_interface.hide()
