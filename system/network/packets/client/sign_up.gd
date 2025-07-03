@@ -5,8 +5,8 @@ extends RefCounted
 var packet_id: int = Packets.SIGN_UP
 
 
-func handle(success: String, error: String, scene: SceneTree) -> void:
-	if error != "":
+func handle(success: String, error: Array, scene: SceneTree) -> void:
+	if not error.is_empty():
 		Notification.show(error)
 		return
 
@@ -18,4 +18,4 @@ func handle(success: String, error: String, scene: SceneTree) -> void:
 
 	sign_in_interface.show()
 
-	Notification.show(success)
+	Notification.show([success])

@@ -20,15 +20,15 @@ func _on_sign_up_button_pressed() -> void:
 	var re_password: String = re_password_input.text
 
 	if email.length() <= 6:
-		Notification.show("O email precisa ter ao menos 6 caracteres.")
+		Notification.show(["O email precisa ter ao menos 6 caracteres."])
 		return
 
 	if password.length() < 3:
-		Notification.show("A senha precisa ter ao menos 3 caracteres.")
+		Notification.show(["A senha precisa ter ao menos 3 caracteres."])
 		return
 
 	if password != re_password:
-		Notification.show("A senha informada não corresponde à confirmação.")
+		Notification.show(["A senha informada não corresponde à confirmação."])
 		return
 
 	back_button.disabled = true
@@ -46,6 +46,6 @@ func reset_form() -> void:
 	email_input.text = ""
 	password_input.text = ""
 	re_password_input.text = ""
-	
+
 	back_button.disabled = false
 	sign_up_button.disabled = false

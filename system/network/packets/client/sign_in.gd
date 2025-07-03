@@ -7,7 +7,7 @@ var packet_id: int = Packets.SIGN_IN
 
 func handle(success: Dictionary, error: String, scene: SceneTree) -> void:
 	if error != "":
-		Notification.show(error)
+		#Notification.show(error)
 		return
 
 	var sign_in_interface: SignInInterface = scene.root.get_node("Client/MenuCanvas/SignIn")
@@ -18,4 +18,4 @@ func handle(success: Dictionary, error: String, scene: SceneTree) -> void:
 
 	actor_list_interface.show()
 	var actors: Array = success.get("actors", [])
-	actor_list_interface.update_slot(actors.size(), actors)
+	actor_list_interface.update_slot(actors.size() || 3, actors)

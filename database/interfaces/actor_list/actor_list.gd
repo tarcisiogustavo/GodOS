@@ -23,12 +23,12 @@ func update_slot(max_actors: int, actors: Array) -> void:
 
 		if has_character:
 			slot_instance.actor_data = actors[i]
+			slot_instance.name_label.text = actors[i].get("name", "")
 		else:
 			slot_instance.actor_data = {}
+			slot_instance.name_label.text = "Empty"
 
 		if slot_instance.has_method("set_has_character"):
 			slot_instance.set_has_character(has_character)
-
-		slot_instance.name_label.text = actors[i].get("name")
 
 		slots_location.add_child(slot_instance)
