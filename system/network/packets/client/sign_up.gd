@@ -15,7 +15,6 @@ func handle(success: String, error: Array, scene: SceneTree) -> void:
 
 	sign_up_interface.hide()
 	sign_up_interface.reset_form()
-
 	sign_in_interface.show()
 
 	Notification.show([success])

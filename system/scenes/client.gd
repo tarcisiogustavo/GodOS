@@ -10,7 +10,10 @@ func _init() -> void:
 	_client = Network.client
 	_handler = Handler.new([
 		ClientSignInPacket.new(),
-		ClientSignUpPacket.new()
+		ClientSignUpPacket.new(),
+		ClientActorListPacket.new(),
+		ClientCreateActorPacket.new(),
+		ClientDeleteActorPacket.new()
 	])
 
 

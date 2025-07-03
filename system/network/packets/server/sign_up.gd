@@ -15,7 +15,7 @@ func handle(email: String, password: String, version: Vector3, _scene: SceneTree
 		return
 
 	var endpoint = ServerConstants.backend_endpoint + "account/sign-up"
-	var headers := { "Content-Type": "application/json" }
+	var headers := {"Content-Type": "application/json"}
 	var body := {
 		"email": email,
 		"password": password,

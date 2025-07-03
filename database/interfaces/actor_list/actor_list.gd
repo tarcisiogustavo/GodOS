@@ -6,29 +6,24 @@ extends PanelContainer
 
 
 func update_slot(max_actors: int, actors: Array) -> void:
-	if slots_location == null:
-		return
-
 	if typeof(actors) != TYPE_ARRAY:
 		return
 
-	var slot_scene: PackedScene = preload("res://database/interfaces/actor_list/actor_slot.tscn")
+	var empty_slot: PackedScene = preload("res://database/interfaces/actor_list/empty_slot.tscn")
+	var actor_slot: PackedScene = preload("res://database/interfaces/actor_list/actor_slot.tscn")
 
 	for child in slots_location.get_children():
 		child.queue_free()
 
-	for i in range(max_actors):
-		var slot_instance = slot_scene.instantiate()
-		var has_character = i < actors.size() and actors[i] != null
+	for i in range(actors.size()):
+		var data: Dictionary = actors[i]
 
-		if has_character:
-			slot_instance.actor_data = actors[i]
-			slot_instance.name_label.text = actors[i].get("name", "")
-		else:
-			slot_instance.actor_data = {}
-			slot_instance.name_label.text = "Empty"
+		var slot: ActorSlotInterface = actor_slot.instantiate()
+		slot.update_data(data)
 
-		if slot_instance.has_method("set_has_character"):
-			slot_instance.set_has_character(has_character)
+		slots_location.add_child(slot)
 
-		slots_location.add_child(slot_instance)
+	var remaining_slots = max_actors - actors.size()
+	for i in range(remaining_slots):
+		var slot: EmptyActorSlotInterface = empty_slot.instantiate()
+		slots_location.add_child(slot)

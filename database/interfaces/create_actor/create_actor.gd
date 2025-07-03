@@ -15,7 +15,7 @@ func _ready() -> void:
 func _on_create_button_pressed() -> void:
 	var name: String = name_input.text
 
-	if name.length() <= 4:
+	if name.length() <= 3:
 		Notification.show(["O nome precisa ter ao menos 4 caracteres."])
 		return
 

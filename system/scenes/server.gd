@@ -11,6 +11,7 @@ func _init() -> void:
 	_handler = Handler.new([
 		ServerSignInPacket.new(),
 		ServerSignUpPacket.new(),
+		ServerActorListPacket.new(),
 		ServerCreateActorPacket.new(),
 		ServerDeleteActorPacket.new(),
 		ServerSelectActorPacket.new(),
