@@ -17,8 +17,9 @@ move_speed = 150
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 
-[node name="States" type="Node2D" parent="."]
+[node name="States" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_fop73")
+initial_state = NodePath("Stopped")
 
 [node name="Stopped" parent="States" node_paths=PackedStringArray("entity", "sprite", "animation") instance=ExtResource("3_qp5xl")]
 entity = NodePath("../..")

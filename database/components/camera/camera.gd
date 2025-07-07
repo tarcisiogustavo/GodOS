@@ -14,7 +14,7 @@ var zoom_levels: Dictionary = {
 	ZoomLevel.EXTREME: 4
 }
 
-@export var actor: Entity
+@export var actor: Actor
 
 @export_group("Variables")
 @export var zoom_speed: float = 0.1

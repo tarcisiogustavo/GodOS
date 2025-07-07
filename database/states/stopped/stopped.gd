@@ -23,7 +23,7 @@ func _on_physics_process(_delta : float) -> void:
 	elif entity.last_direction.x > 0:
 		animation.play("stopped_right")
 
-	# PArado para baixo
+	# Parado para baixo
 	elif entity.last_direction.y > 0:
 		animation.play("stopped_down")
 

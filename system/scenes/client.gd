@@ -13,7 +13,8 @@ func _init() -> void:
 		ClientSignUpPacket.new(),
 		ClientActorListPacket.new(),
 		ClientCreateActorPacket.new(),
-		ClientDeleteActorPacket.new()
+		ClientDeleteActorPacket.new(),
+		ClientSelectActorPacket.new()
 	])
 
 

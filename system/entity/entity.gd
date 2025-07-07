@@ -7,9 +7,8 @@ extends CharacterBody2D
 @export var states: StateMachine
 
 
-@export var id: int
 @export var identifier: String
-@export var move_speed: int
+@export var move_speed: int = 100
 
 
 var direction: Vector2 = Vector2.DOWN
