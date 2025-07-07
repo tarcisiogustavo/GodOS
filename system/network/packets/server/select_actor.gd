@@ -26,7 +26,6 @@ func handle(actor_id: int, scene: SceneTree, peer_id: int) -> void:
 		return
 
 	var actor_data: Dictionary = {
-		"peer_id": peer_id,
 		"id": response_data["id"],
 		"name": response_data["name"],
 		"direction": Vector2(response_data["directionX"], response_data["directionY"]),
@@ -36,15 +35,18 @@ func handle(actor_id: int, scene: SceneTree, peer_id: int) -> void:
 
 	const actor: PackedScene = preload("res://database/entities/actor/actor.tscn")
 	var actor_instance: Actor = actor.instantiate()
-	actor_instance.name = str(peer_id)
+	actor_instance.id = actor_data["id"]
 	actor_instance.identifier = actor_data["name"]
 	actor_instance.direction = actor_data["direction"]
+	#actor_instance.map = actor_data["map"]
 	actor_instance.position = actor_data["position"]
 	actor_instance.camera.queue_free()
 	actor_instance.controller.queue_free()
 
 	# Adicionar no mundo (LÓGICA TEMPORÁRIA)
-	var game: Node2D = scene.root.get_node("Server/Game")
-	game.add_child(actor_instance)
+	var game: Map = scene.root.get_node("Server/Game/Map")
+	game.add_actor(actor_instance)
+
+	ServerGlobals.actors[peer_id] = actor_instance
 
 	Network.server.send_to(peer_id, packet_id, [actor_data, []])

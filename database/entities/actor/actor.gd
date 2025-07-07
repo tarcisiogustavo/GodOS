@@ -4,3 +4,6 @@ extends Entity
 
 @export var camera: ActorCamera
 @export var controller: Controller
+
+
+var map: String

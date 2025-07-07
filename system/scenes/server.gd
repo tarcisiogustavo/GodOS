@@ -15,6 +15,7 @@ func _init() -> void:
 		ServerCreateActorPacket.new(),
 		ServerDeleteActorPacket.new(),
 		ServerSelectActorPacket.new(),
+		ServerMoveActorPacket.new(),
 	])
 
 

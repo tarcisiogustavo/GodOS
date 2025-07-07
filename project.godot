@@ -26,6 +26,10 @@ ServerGlobals="*res://system/globals/server.gd"
 Fetch="*res://system/fetch.gd"
 Temp="*res://system/temp.gd"
 
+[display]
+
+window/vsync/vsync_mode=0
+
 [input]
 
 walking_left={
