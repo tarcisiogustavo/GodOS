@@ -7,7 +7,7 @@
 
 Fornecer uma base sólida, extensível para a criação de jogos online 2D, focando em:
 
-- Servidor dedicado não [High Level Multiplayer](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html)
+- Servidor dedicado, não [High Level Multiplayer](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html)
 - Compatibilidade com **(Windows, Linux, Android, Mac, Ios)**
 - Facilidade de uso.
 - Sistemas iniciais.
