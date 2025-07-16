@@ -11,28 +11,31 @@ var identifier: String
 var actors: Dictionary
 
 
-func add_actor(actor: Actor) -> void:
-	if actors.has(actor.id):
+func add_actor(peer_id: int, actor: Actor) -> void:
+	if actors.has(peer_id):
 		return
 
 	spawn.add_child(actor)
-	actors[actor.id] = actor
+	actors[peer_id] = actor
 
 
-func remove_actor(actor_id: int) -> void:
-	if not actors.has(actor_id):
+func remove_actor(peer_id: int) -> void:
+	if not actors.has(peer_id):
 		return
 
-	var actor_instance: Actor = actors[actor_id]
+	var actor_instance: Actor = actors[peer_id]
 	actor_instance.queue_free()
 
-	actors.erase(actor_id)
+	actors.erase(peer_id)
 
 
-func move_actor(actor_id: int, new_direction: Vector2, new_position: Vector2) -> void:
-	if not actors.has(actor_id):
-		return
-
-	var actor_instance: Actor = actors[actor_id]
-	actor_instance.move(new_direction)
-	actor_instance.global_position = new_position
+func move_actor(peer_id: int, direction: Vector2) -> Vector2:
+	if not actors.has(peer_id):
+		return Vector2.ZERO
+	
+	var actor_instance: Actor = actors[peer_id]
+	var old_position = actor_instance.global_position
+	
+	actor_instance.move(direction)
+	
+	return actor_instance.global_position

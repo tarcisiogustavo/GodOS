@@ -37,9 +37,6 @@ position = Vector2(0.5, -11.5)
 shape = SubResource("RectangleShape2D_7ktaq")
 
 [node name="Camera" parent="." index="3" node_paths=PackedStringArray("actor") instance=ExtResource("4_drwrf")]
-limit_smoothed = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
 actor = NodePath("..")
 
 [node name="Controller" parent="." index="4" instance=ExtResource("5_v1ox0")]

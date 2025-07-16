@@ -9,9 +9,9 @@ enum ZoomLevel {
 }
 
 var zoom_levels: Dictionary = {
-	ZoomLevel.NORMAL: 2,
-	ZoomLevel.FAR: 3,
-	ZoomLevel.EXTREME: 4
+	ZoomLevel.NORMAL: 1,
+	ZoomLevel.FAR: 2,
+	ZoomLevel.EXTREME: 3
 }
 
 @export var actor: Actor

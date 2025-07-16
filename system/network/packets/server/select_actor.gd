@@ -35,6 +35,7 @@ func handle(actor_id: int, scene: SceneTree, peer_id: int) -> void:
 
 	const actor: PackedScene = preload("res://database/entities/actor/actor.tscn")
 	var actor_instance: Actor = actor.instantiate()
+	actor_instance.name = str(int(peer_id))
 	actor_instance.id = actor_data["id"]
 	actor_instance.identifier = actor_data["name"]
 	actor_instance.direction = actor_data["direction"]
@@ -45,7 +46,7 @@ func handle(actor_id: int, scene: SceneTree, peer_id: int) -> void:
 
 	# Adicionar no mundo (LÓGICA TEMPORÁRIA)
 	var game: Map = scene.root.get_node("Server/Game/Map")
-	game.add_actor(actor_instance)
+	game.add_actor(peer_id, actor_instance)
 
 	ServerGlobals.actors[peer_id] = actor_instance
 

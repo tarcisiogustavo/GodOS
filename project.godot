@@ -28,7 +28,12 @@ Temp="*res://system/temp.gd"
 
 [display]
 
-window/vsync/vsync_mode=0
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[gui]
+
+common/snap_controls_to_pixels=false
 
 [input]
 
@@ -63,7 +68,12 @@ zoom_out={
 ]
 }
 
+[physics]
+
+common/physics_jitter_fix=1.0
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+viewport/hdr_2d=true

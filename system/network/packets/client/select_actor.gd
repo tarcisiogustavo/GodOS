@@ -12,6 +12,7 @@ func handle(success: Dictionary, error: Array, scene: SceneTree) -> void:
 
 	const actor: PackedScene = preload("res://database/entities/actor/actor.tscn")
 	var actor_instance: Actor = actor.instantiate()
+	actor_instance.name = str(int(ClientGlobals.peer_id))
 	actor_instance.id = success["id"]
 	actor_instance.identifier = success["name"]
 	actor_instance.direction = success["direction"]
@@ -19,7 +20,8 @@ func handle(success: Dictionary, error: Array, scene: SceneTree) -> void:
 	actor_instance.position = success["position"]
 #
 	var game: Node2D = scene.root.get_node("Client/Game")
-	game.add_child(actor_instance)
+	var map: Map = game.get_node("Map")
+	map.add_actor(int(ClientGlobals.peer_id), actor_instance)
 
 	var menu_canvas: CanvasLayer = scene.root.get_node("Client/MenuCanvas")
 	menu_canvas.hide()

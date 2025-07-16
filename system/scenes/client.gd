@@ -14,7 +14,8 @@ func _init() -> void:
 		ClientActorListPacket.new(),
 		ClientCreateActorPacket.new(),
 		ClientDeleteActorPacket.new(),
-		ClientSelectActorPacket.new()
+		ClientSelectActorPacket.new(),
+		ClientMoveActorPacket.new()
 	])
 
 
