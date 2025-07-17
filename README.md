@@ -1,13 +1,13 @@
 # GodOS
 
-**GodOS** é um sistema multiplayer dedicado, multiplataforma, desenvolvido em [Godot Engine](https://godotengine.org/) com foco em jogos 2D. Ele foi criado para suprir a necessidade da comunidade por uma solução moderna que substitua as antigas plataformas como **Eclipse Origins Netplay** e **VXA-OS**, oferecendo um novo caminho para o desenvolvimento de MMORPGs e jogos online 2D.
+**GodOS** é um sistema multiplayer dedicado, multiplataforma, desenvolvido na [Godot Engine](https://godotengine.org/) com foco em jogos multiplayer 2D (Não se limitando a 2D). Ele foi criado para suprir a necessidade da comunidade por uma solução moderna que substitua as antigas plataformas como **Eclipse Origins, Netplay** e o **VXA-OS**, oferecendo um novo caminho para o desenvolvimento jogos online.
 
 
 ## 🎯 Objetivo
 
-Fornecer uma base sólida, extensível para a criação de jogos online 2D, focando em:
+Fornecer uma base sólida, extensível para a criação de jogos online, focando em:
 
-- Servidor dedicado, não [High Level Multiplayer](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html)
+- Servidor dedicado.
 - Compatibilidade com **(Windows, Linux, Android, Mac, Ios)**
 - Facilidade de uso.
 - Sistemas iniciais.
@@ -28,16 +28,15 @@ Fornecer uma base sólida, extensível para a criação de jogos online 2D, foca
 - ENet Network
 
 ## 📋 Sistemas
-- [X] Alerta
-- [ ] Notificações
+- [X] Notificações
 - [x] Login
 - [X] Cadastro
 - [X] Lista dos personagens
 - [X] Criação do personagem
 - [X] Apagar personagem
-- [X] Seleção do personagem
-- [X] Spawn do personagem no servidor
-- [X] Movimento do personagem no servidor
+- [ ] Seleção do personagem
+- [ ] Spawn do personagem no servidor
+- [ ] Movimento do personagem no servidor
 - [ ] Movimento do personagem para outros
 - [ ] Spawn do personagem para outros
 - [ ] Múltiplos mapas no cliente/servidor
