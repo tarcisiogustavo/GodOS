@@ -1,7 +1,7 @@
 extends Node
 
 
-var menu_interface: WindowManager = WindowManager.new()
+var connections: Array[Dictionary] = []
 
-
-var peer_id: int = -1
+var users: Dictionary = {}
+var actors: Dictionary = {}
