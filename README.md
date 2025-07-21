@@ -26,29 +26,6 @@ Fornecer uma base sólida, extensível para a criação de jogos online, focando
 - GDScript
 - ENet Network
 
-## 📋 Sistemas
-- [X] Notificação
-- [x] Login
-- [X] Cadastro
-- [X] Lista dos personagens
-- [X] Criação do personagem
-- [X] Apagar personagem
-- [X] Confirmação
-- [ ] Seleção do personagem
-- [ ] Spawn do personagem no servidor
-- [ ] Movimento do personagem no servidor
-- [ ] Movimento do personagem para outros
-- [ ] Spawn do personagem para outros
-- [ ] Múltiplos mapas no cliente/servidor
-- [ ] Chat
-- [ ] Hotbar
-- [ ] Inventário
-- [ ] Itens (Armas, Armadura, Consumíveis)
-- [ ] Atributos do personagem (Vida, Força, Defesa)
-- [ ] Informações do personagem
-- [ ] NPC`s (Aldeões, Monstros)
-- [ ] Combate PVP/PVE
-
 ## 📦 Instalação
 ```bash
 git clone https://github.com/seuusuario/GodOS.git
