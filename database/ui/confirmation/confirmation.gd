@@ -8,8 +8,8 @@ signal on_confirm_button_pressed()
 @export_group("Labels")
 @export var _message: Label
 @export_group("Buttons")
-@export var _back: Button
 @export var _confirm: Button
+@export var _back: Button
 
 
 func set_message(message: String) -> void:

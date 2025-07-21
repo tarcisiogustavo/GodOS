@@ -1,10 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcp4kc2kh5e57"]
+[gd_scene load_steps=3 format=3 uid="uid://dcp4kc2kh5e57"]
 
 [ext_resource type="Script" uid="uid://cs6ijoucrj31d" path="res://database/ui/actor_list/actor_slot.gd" id="1_duqj2"]
-[ext_resource type="Texture2D" uid="uid://qome86pognxm" path="res://assets/graphics/entities/001-Fighter01.png" id="2_8s3ut"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ajcrb"]
-atlas = ExtResource("2_8s3ut")
 region = Rect2(0, 0, 64, 96)
 
 [node name="ActorSlot" type="PanelContainer" node_paths=PackedStringArray("_name", "_sprite")]

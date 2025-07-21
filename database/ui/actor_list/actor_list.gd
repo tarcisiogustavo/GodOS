@@ -4,7 +4,6 @@ extends PanelContainer
 
 @export_group("HBox's")
 @export var _slots_location: HBoxContainer
-
 @export_group("References")
 @export var _empty_slot: PackedScene
 @export var _actor_slot: PackedScene

@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_012cn"]
 bg_color = Color(0.168627, 0.168627, 0.168627, 0.941176)
 
-[node name="Confirmation" type="PanelContainer" node_paths=PackedStringArray("_message", "_back", "_confirm")]
+[node name="Confirmation" type="PanelContainer" node_paths=PackedStringArray("_message", "_confirm", "_back")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,8 +14,8 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_012cn")
 script = ExtResource("1_r0ikn")
 _message = NodePath("Panel/Margin/Content/MessageLabel")
-_back = NodePath("Panel/Margin/Content/Buttons/BackButton")
 _confirm = NodePath("Panel/Margin/Content/Buttons/ConfirmButton")
+_back = NodePath("Panel/Margin/Content/Buttons/BackButton")
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -40,15 +40,15 @@ layout_mode = 2
 [node name="Buttons" type="VBoxContainer" parent="Panel/Margin/Content"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="Panel/Margin/Content/Buttons"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Confirmar"
-
 [node name="ConfirmButton" type="Button" parent="Panel/Margin/Content/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Confirmar"
 
-[connection signal="pressed" from="Panel/Margin/Content/Buttons/BackButton" to="." method="_on_back_button_pressed"]
+[node name="BackButton" type="Button" parent="Panel/Margin/Content/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Voltar"
+
 [connection signal="pressed" from="Panel/Margin/Content/Buttons/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="Panel/Margin/Content/Buttons/BackButton" to="." method="_on_back_button_pressed"]

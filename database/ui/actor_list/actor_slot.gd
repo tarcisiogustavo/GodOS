@@ -21,7 +21,11 @@ func _on_access_button_pressed() -> void:
 
 
 func _on_delete_button_pressed() -> void:
-	Client.send(Packets.DELETE_ACTOR, [int(_data["id"])])
+	Confirmation.show("Deseja apagar o personagem " + _data["name"] + "?")
+	Confirmation.confirmation.on_confirm_button_pressed.connect(
+		func():
+			Client.send(Packets.DELETE_ACTOR, [int(_data["id"])])
+	)
 
 
 func _update_sprite(sprite_filename: String) -> void:
