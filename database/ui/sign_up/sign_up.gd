@@ -45,7 +45,7 @@ func _on_back_button_pressed() -> void:
 	hide()
 
 
-func _reset_state() -> void:
+func reset() -> void:
 	_email.clear()
 	_email.editable = true
 

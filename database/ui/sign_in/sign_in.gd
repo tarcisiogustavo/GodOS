@@ -38,7 +38,7 @@ func _on_sign_up_button_pressed() -> void:
 	hide()
 
 
-func _reset_state() -> void:
+func reset() -> void:
 	_email.clear()
 	_email.editable = true
 

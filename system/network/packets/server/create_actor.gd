@@ -7,12 +7,12 @@ var packet_id: int = Packets.CREATE_ACTOR
 
 func handle(actor_name: String, actor_sprite: String, _scene: SceneTree, peer_id: int) -> void:
 	if actor_name.length() < ServerConstants.min_actor_name_length:
-		Server.send_to(peer_id, packet_id, [{}, ["O nome precisa ter ao menos 4 caracteres."]])
+		Server.send_to(peer_id, packet_id, ["", ["O nome precisa ter ao menos 4 caracteres."]])
 		return
 
 	var user: Dictionary = ServerGlobals.users.get(peer_id, null)
 	if user == null:
-		Server.send_to(peer_id, packet_id, [{}, ["Não foi possível te localizar no servidor!"]])
+		Server.send_to(peer_id, packet_id, ["", ["Não foi possível te localizar no servidor!"]])
 		return
 
 	var account_id: int = user["id"]
@@ -33,8 +33,8 @@ func handle(actor_name: String, actor_sprite: String, _scene: SceneTree, peer_id
 	var response_data = result[2]
 
 	if status_code != 201:
-		Server.send_to(peer_id, packet_id, [{}, Fetch.format_errors(response_data)])
+		Server.send_to(peer_id, packet_id, ["", Fetch.format_errors(response_data)])
 		return
 
 	user["actors"].append(response_data)
-	Server.send_to(peer_id, packet_id, [response_data, []])
+	Server.send_to(peer_id, packet_id, ["Sucesso ao criar o personagem!", []])

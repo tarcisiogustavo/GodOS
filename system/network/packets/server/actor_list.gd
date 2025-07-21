@@ -11,5 +11,6 @@ func handle(_scene: SceneTree, peer_id: int) -> void:
 		Server.send_to(peer_id, packet_id, [[], ["Não foi possível te localizar no servidor!"]])
 		return
 
+	var max_actors: int = user.get("maxActors", 3)
 	var actors: Array = user.get("actors", [])
-	Server.send_to(peer_id, packet_id, [actors, []])
+	Server.send_to(peer_id, packet_id, [max_actors, actors, []])

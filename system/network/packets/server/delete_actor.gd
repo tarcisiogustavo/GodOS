@@ -30,4 +30,4 @@ func handle(actor_id: int, _scene: SceneTree, peer_id: int) -> void:
 			user["actors"].remove_at(i)
 			break
 
-	Server.send_to(peer_id, packet_id, [user["id"], []])
+	Server.send_to(peer_id, packet_id, ["Personagem apagado com sucesso!", []])

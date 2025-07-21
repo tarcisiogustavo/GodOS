@@ -8,7 +8,13 @@ var _handler: Handler
 
 func _init() -> void:
 	_client = Client.socket
-	_handler = Handler.new([])
+	_handler = Handler.new([
+		ClientSignInPacket.new(),
+		ClientSignUpPacket.new(),
+		ClientActorListPacket.new(),
+		ClientDeleteActorPacket.new(),
+		ClientCreateActorPacket.new(),
+	])
 
 
 func _ready() -> void:

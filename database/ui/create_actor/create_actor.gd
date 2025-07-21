@@ -79,7 +79,7 @@ func _on_new_button_pressed() -> void:
 	Client.send(Packets.CREATE_ACTOR, [actor_name, _selected_sprite])
 
 
-func _reset() -> void:
+func reset() -> void:
 	_name.clear()
 	_name.editable = true
 
@@ -87,3 +87,6 @@ func _reset() -> void:
 	_next.disabled = false
 	_back.disabled = false
 	_new.disabled = false
+
+	_current_sprite = 0
+	_update_sprite_display()
