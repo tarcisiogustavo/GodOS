@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://by0ud7sqqaqpc"]
+
+[ext_resource type="Script" uid="uid://cdapc7ikxgfv3" path="res://database/ui/notification/notification.gd" id="1_1pw0t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_012cn"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 0.941176)
+
+[node name="Notification" type="PanelContainer" node_paths=PackedStringArray("_message", "_close")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_012cn")
+script = ExtResource("1_1pw0t")
+_message = NodePath("Panel/Margin/Content/MessageLabel")
+_close = NodePath("Panel/Margin/Content/CloseButton")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Content" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="MessageLabel" type="Label" parent="Panel/Margin/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="Panel/Margin/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Confirmar"
+
+[connection signal="pressed" from="Panel/Margin/Content/CloseButton" to="." method="_on_close_button_pressed"]
