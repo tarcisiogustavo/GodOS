@@ -5,14 +5,19 @@ extends RefCounted
 var packet_id: int = Packets.CREATE_ACTOR
 
 
-func handle(message: String, error: Array, scene: SceneTree) -> void:
-	if not error.is_empty():
-		Notification.show(error)
+func handle(success: String, errors: Array, scene: SceneTree) -> void:
+	if errors.size() > 0:
+		var messages := []
+		for e in errors:
+			if typeof(e) == TYPE_STRING:
+				messages.append(e)
+
+		Notification.show(messages)
 		return
 
-	var create_actor_interface: CreateActorInterface = scene.root.get_node("Client/MenuCanvas/CreateActor")
-	create_actor_interface.hide()
+	var create_actor_ui: CreateActorUI = scene.root.get_node("Main/MenuCanvas/CreateActor")
+	create_actor_ui.reset()
+	create_actor_ui.hide()
 
-	Notification.show([message])
-
-	Network.client.send(Packets.ACTOR_LIST)
+	Notification.show([success])
+	Client.send(Packets.ACTOR_LIST)

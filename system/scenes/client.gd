@@ -2,31 +2,28 @@ class_name ClientScene
 extends Control
 
 
-var _client: Client
+var _client: ClientSocket
 var _handler: Handler
 
 
 func _init() -> void:
-	_client = Network.client
+	_client = Client.socket
 	_handler = Handler.new([
 		ClientSignInPacket.new(),
 		ClientSignUpPacket.new(),
 		ClientActorListPacket.new(),
-		ClientCreateActorPacket.new(),
 		ClientDeleteActorPacket.new(),
-		ClientSelectActorPacket.new(),
-		ClientMoveActorPacket.new()
+		ClientCreateActorPacket.new(),
 	])
 
 
 func _ready() -> void:
 	_client.connect_to_server()
+	print("Cliente iniciado na porta: ", ClientConstants.port)
 
 	_client.peer_connected.connect(_peer_connected)
 	_client.peer_disconnected.connect(_peer_disconnected)
 	_client.packet_received.connect(_packet_received)
-
-	print("Cliente iniciado na porta: ", ClientConstants.port)
 
 
 func _process(_delta: float) -> void:
@@ -34,11 +31,11 @@ func _process(_delta: float) -> void:
 
 
 func _peer_connected() -> void:
-	pass
+	print("Conectado ao servidor.")
 
 
 func _peer_disconnected() -> void:
-	pass
+	print("Desconectado do servidor.")
 
 
 func _packet_received(packet_data: PackedByteArray) -> void:

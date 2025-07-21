@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8fn4c5kiel6v"]
+
+[ext_resource type="Script" uid="uid://b5bxmuqh8eupv" path="res://database/ui/create_actor/create_actor.gd" id="1_ym5ss"]
+[ext_resource type="Texture2D" uid="uid://qome86pognxm" path="res://assets/graphics/entities/001-Fighter01.png" id="2_0n87f"]
+[ext_resource type="Texture2D" uid="uid://b5ac25uumm43u" path="res://assets/graphics/entities/002-Fighter02.png" id="3_45pvg"]
+[ext_resource type="Texture2D" uid="uid://bithuwvadf1an" path="res://assets/graphics/entities/003-Fighter03.png" id="4_hs4yv"]
+[ext_resource type="Texture2D" uid="uid://tlbktoxyxik2" path="res://assets/graphics/entities/004-Fighter04.png" id="5_5jnpa"]
+[ext_resource type="Texture2D" uid="uid://c2dynbn644opc" path="res://assets/graphics/entities/005-Fighter05.png" id="6_a6b5s"]
+[ext_resource type="Texture2D" uid="uid://bkcuiw5gyfgf6" path="res://assets/graphics/entities/006-Fighter06.png" id="7_ijf80"]
+[ext_resource type="Texture2D" uid="uid://5bd5hqstcx4d" path="res://assets/graphics/entities/007-Fighter07.png" id="8_tr71p"]
+[ext_resource type="Texture2D" uid="uid://bcke7o2vusnby" path="res://assets/graphics/entities/008-Fighter08.png" id="9_acdky"]
+[ext_resource type="Texture2D" uid="uid://dcv3nmyq003ww" path="res://assets/graphics/entities/009-Lancer01.png" id="10_iwjg2"]
+[ext_resource type="Texture2D" uid="uid://drmrrcjaqfqom" path="res://assets/graphics/entities/010-Lancer02.png" id="11_p3uwp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym5ss"]
+region = Rect2(0, 0, 64, 96)
+
+[node name="CreateActor" type="PanelContainer" node_paths=PackedStringArray("_name", "_sprite", "_previous", "_next", "_back", "_new")]
+custom_minimum_size = Vector2(0, 105)
+offset_right = 141.0
+offset_bottom = 104.0
+size_flags_horizontal = 3
+script = ExtResource("1_ym5ss")
+_name = NodePath("Margin/Content/Name")
+_sprite = NodePath("Margin/Content/Sprite/Sprite")
+_previous = NodePath("Margin/Content/Sprite/PreviousButton")
+_next = NodePath("Margin/Content/Sprite/NextButton")
+_back = NodePath("Margin/Content/Button/BackButton")
+_new = NodePath("Margin/Content/Button/NewButton")
+_sprites = Array[CompressedTexture2D]([ExtResource("2_0n87f"), ExtResource("3_45pvg"), ExtResource("4_hs4yv"), ExtResource("5_5jnpa"), ExtResource("6_a6b5s"), ExtResource("7_ijf80"), ExtResource("8_tr71p"), ExtResource("9_acdky"), ExtResource("10_iwjg2"), ExtResource("11_p3uwp")])
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Content" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="Name" type="LineEdit" parent="Margin/Content"]
+layout_mode = 2
+placeholder_text = "Nome"
+
+[node name="Sprite" type="HBoxContainer" parent="Margin/Content"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="PreviousButton" type="Button" parent="Margin/Content/Sprite"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "◀️ "
+
+[node name="Sprite" type="TextureRect" parent="Margin/Content/Sprite"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ym5ss")
+stretch_mode = 2
+
+[node name="NextButton" type="Button" parent="Margin/Content/Sprite"]
+layout_mode = 2
+size_flags_vertical = 0
+text = " ▶️"
+
+[node name="Button" type="HBoxContainer" parent="Margin/Content"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Margin/Content/Button"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Voltar"
+
+[node name="NewButton" type="Button" parent="Margin/Content/Button"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Novo"
+
+[connection signal="pressed" from="Margin/Content/Sprite/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="Margin/Content/Sprite/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="Margin/Content/Button/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Margin/Content/Button/NewButton" to="." method="_on_new_button_pressed"]

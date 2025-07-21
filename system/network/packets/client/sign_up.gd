@@ -5,19 +5,22 @@ extends RefCounted
 var packet_id: int = Packets.SIGN_UP
 
 
-func handle(success: String, error: Array, scene: SceneTree) -> void:
-	var sign_up_interface: SignUpInterface = scene.root.get_node("Client/MenuCanvas/SignUp")
-	var sign_in_interface: SignInInterface = scene.root.get_node("Client/MenuCanvas/SignIn")
+func handle(success: String, errors: Array, scene: SceneTree) -> void:
+	var sign_up_ui: SignUpUI = scene.root.get_node("Main/MenuCanvas/SignUp")
+	var sign_in_ui: SignInUI = scene.root.get_node("Main/MenuCanvas/SignIn")
 
-	if not error.is_empty():
-		sign_up_interface.reset_form()
+	if errors.size() > 0:
+		var messages := []
+		for e in errors:
+			if typeof(e) == TYPE_STRING:
+				messages.append(e)
 
-		Notification.show(error)
+		sign_up_ui.reset()
+		Notification.show(messages)
 		return
 
-	sign_up_interface.hide()
-	sign_up_interface.reset_form()
-
-	sign_in_interface.show()
+	sign_up_ui.hide()
+	sign_up_ui.reset()
 
 	Notification.show([success])
+	sign_in_ui.show()

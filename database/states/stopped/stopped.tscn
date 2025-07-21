@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://mgrtf01sccuf"]
-
-[ext_resource type="Script" uid="uid://b8a4ydovl1seo" path="res://database/states/stopped/stopped.gd" id="1_kih74"]
-
-[node name="Stopped" type="Node"]
-script = ExtResource("1_kih74")

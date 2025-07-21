@@ -1,39 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://j1w85ua11rno"]
+[gd_scene load_steps=6 format=3 uid="uid://43ccmlyr8gyf"]
 
-[ext_resource type="Script" uid="uid://bupfuh3prymdj" path="res://system/scenes/client.gd" id="1_uwnqk"]
-[ext_resource type="PackedScene" uid="uid://dtrxqqkigbjp2" path="res://database/interfaces/sign_up/sign_up.tscn" id="2_2nngt"]
-[ext_resource type="PackedScene" uid="uid://cxbh8txy65wko" path="res://system/scenes/game.tscn" id="2_bon3f"]
-[ext_resource type="Script" uid="uid://desijpvm2qjpf" path="res://system/interface/canvas/menu_canvas.gd" id="2_nyppy"]
-[ext_resource type="PackedScene" uid="uid://bgnqtx3a5ce5f" path="res://database/interfaces/create_actor/create_actor.tscn" id="3_htodi"]
-[ext_resource type="PackedScene" uid="uid://spkp0e5aemdw" path="res://database/interfaces/sign_in/sign_in.tscn" id="3_nyppy"]
-[ext_resource type="PackedScene" uid="uid://bafgnqlsr0gh5" path="res://database/interfaces/actor_list/actor_list.tscn" id="3_wmwlo"]
+[ext_resource type="Script" uid="uid://cut1s241w200" path="res://system/scenes/client.gd" id="1_uwnqk"]
+[ext_resource type="PackedScene" uid="uid://b8fn4c5kiel6v" path="res://database/ui/create_actor/create_actor.tscn" id="2_nmnkx"]
+[ext_resource type="PackedScene" uid="uid://3o5kymj45w2m" path="res://database/ui/actor_list/actor_list.tscn" id="3_wmwlo"]
+[ext_resource type="PackedScene" uid="uid://da6vys4fd524w" path="res://database/ui/sign_up/sign_up.tscn" id="4_htodi"]
+[ext_resource type="PackedScene" uid="uid://jfpiqcsldjhd" path="res://database/ui/sign_in/sign_in.tscn" id="5_bon3f"]
 
 [node name="Client" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_uwnqk")
 
-[node name="Game" parent="." instance=ExtResource("2_bon3f")]
+[node name="Game" type="Node2D" parent="."]
 
-[node name="GameCanvas" type="CanvasLayer" parent="."]
+[node name="MenuCanvas" type="CanvasLayer" parent="."]
 
-[node name="MenuCanvas" type="CanvasLayer" parent="." node_paths=PackedStringArray("interfaces")]
-script = ExtResource("2_nyppy")
-interfaces = [NodePath("SignIn"), NodePath("SignUp"), NodePath("ActorList"), NodePath("CreateActor")]
-
-[node name="CreateActor" parent="MenuCanvas" instance=ExtResource("3_htodi")]
+[node name="CreateActor" parent="MenuCanvas" node_paths=PackedStringArray("_actor_list_ui") instance=ExtResource("2_nmnkx")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -185.0
-offset_top = -46.0
-offset_right = 185.0
-offset_bottom = 46.0
+offset_left = -76.0
+offset_top = -99.0
+offset_right = 76.0
+offset_bottom = 99.0
 grow_horizontal = 2
 grow_vertical = 2
+_actor_list_ui = NodePath("../ActorList")
 
 [node name="ActorList" parent="MenuCanvas" instance=ExtResource("3_wmwlo")]
 visible = false
@@ -49,7 +48,7 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SignUp" parent="MenuCanvas" instance=ExtResource("2_2nngt")]
+[node name="SignUp" parent="MenuCanvas" node_paths=PackedStringArray("_sign_in_ui") instance=ExtResource("4_htodi")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -62,8 +61,9 @@ offset_right = 185.0
 offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
+_sign_in_ui = NodePath("../SignIn")
 
-[node name="SignIn" parent="MenuCanvas" instance=ExtResource("3_nyppy")]
+[node name="SignIn" parent="MenuCanvas" node_paths=PackedStringArray("_sign_up_ui") instance=ExtResource("5_bon3f")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -75,5 +75,8 @@ offset_right = 185.0
 offset_bottom = 63.5
 grow_horizontal = 2
 grow_vertical = 2
+_sign_up_ui = NodePath("../SignUp")
+
+[node name="GameCanvas" type="CanvasLayer" parent="."]
 
 [node name="SharedCanvas" type="CanvasLayer" parent="."]

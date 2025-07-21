@@ -5,20 +5,21 @@ extends RefCounted
 var packet_id: int = Packets.SIGN_IN
 
 
-func handle(success: int, error: Array, scene: SceneTree) -> void:
-	var sign_in_interface: SignInInterface = scene.root.get_node("Client/MenuCanvas/SignIn")
+func handle(success: Dictionary, errors: Array, scene: SceneTree) -> void:
+	var sign_in_ui: SignInUI = scene.root.get_node("Main/MenuCanvas/SignIn")
 
-	if not error.is_empty():
-		sign_in_interface.reset_form()
+	if errors.size() > 0:
+		var messages := []
+		for e in errors:
+			if typeof(e) == TYPE_STRING:
+				messages.append(e)
 
-		Notification.show(error)
+		sign_in_ui.reset()
+		Notification.show(messages)
 		return
 
-
-	sign_in_interface.hide()
-	sign_in_interface.reset_form()
-
-	ClientGlobals.peer_id = success
+	sign_in_ui.hide()
+	sign_in_ui.reset()
 
 	Notification.show(["Sucesso ao acessar o jogo!"])
-	Network.client.send(Packets.ACTOR_LIST)
+	Client.send(Packets.ACTOR_LIST)

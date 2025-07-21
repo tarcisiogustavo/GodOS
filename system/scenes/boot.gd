@@ -1,34 +1,23 @@
-class_name BootScene
+class_name Boot
 extends Control
 
-@export var _client_scene: PackedScene
-@export var _server_scene: PackedScene
 
-@export var _client_button: Button
-@export var _server_button: Button
-
-
-func _init() -> void:
-	_client_scene = preload("res://system/scenes/client.tscn")
-	_server_scene = preload("res://system/scenes/server.tscn")
+@export_group("References")
+@export var client_scene: PackedScene
+@export var server_scene: PackedScene
 
 
-func _ready() -> void:
-	_client_button.pressed.connect(_on_client_button_pressed)
-	_server_button.pressed.connect(_on_server_button_pressed)
-
-
-func _on_client_button_pressed() -> void:
-	var scene: Control = _client_scene.instantiate()
-	scene.name = "Client"
+func _on_client_pressed() -> void:
+	var scene = client_scene.instantiate()
+	scene.name = "Main"
 
 	get_tree().root.add_child(scene)
 	queue_free()
 
 
-func _on_server_button_pressed() -> void:
-	var scene: Control = _server_scene.instantiate()
-	scene.name = "Server"
+func _on_server_pressed() -> void:
+	var scene = server_scene.instantiate()
+	scene.name = "Main"
 
 	get_tree().root.add_child(scene)
 	queue_free()

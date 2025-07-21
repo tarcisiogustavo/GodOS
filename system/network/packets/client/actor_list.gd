@@ -5,12 +5,17 @@ extends RefCounted
 var packet_id: int = Packets.ACTOR_LIST
 
 
-func handle(max_actors: int, actors: Array, error: Array, scene: SceneTree) -> void:
-	if not error.is_empty():
-		Notification.show(error)
+func handle(max_actors: int, success: Array, errors: Array, scene: SceneTree) -> void:
+	var actor_list_ui: ActorListUI = scene.root.get_node("Main/MenuCanvas/ActorList")
+
+	if errors.size() > 0:
+		var messages := []
+		for e in errors:
+			if typeof(e) == TYPE_STRING:
+				messages.append(e)
+
+		Notification.show(messages)
 		return
 
-	var actor_list_interface: ActorListInterface = scene.root.get_node("Client/MenuCanvas/ActorList")
-
-	actor_list_interface.show()
-	actor_list_interface.update_slot(max_actors, actors)
+	actor_list_ui.update_slots(max_actors, success)
+	actor_list_ui.show()

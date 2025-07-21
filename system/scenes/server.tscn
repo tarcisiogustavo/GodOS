@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://vcaookngaag1"]
+[gd_scene load_steps=2 format=3 uid="uid://cd0odb7mbkgfn"]
 
-[ext_resource type="Script" uid="uid://cde3eqqejtm3y" path="res://system/scenes/server.gd" id="1_7ti4s"]
-[ext_resource type="PackedScene" uid="uid://cxbh8txy65wko" path="res://system/scenes/game.tscn" id="2_2whuu"]
+[ext_resource type="Script" uid="uid://cno3qwjfuwd20" path="res://system/scenes/server.gd" id="1_7ti4s"]
 
 [node name="Server" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_7ti4s")
-
-[node name="Game" parent="." instance=ExtResource("2_2whuu")]

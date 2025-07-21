@@ -2,10 +2,10 @@ class_name Handler
 extends RefCounted
 
 
-var _packets: Dictionary[int, Object] = {}
+var _packets: Dictionary = {}
 
 
-func _init(packets: Array[Object] = []) -> void:
+func _init(packets: Array = []) -> void:
 	for packet in packets:
 		if packet.has_method("handle"):
 			_packets[packet.packet_id] = packet

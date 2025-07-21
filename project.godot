@@ -11,25 +11,26 @@ config_version=5
 [application]
 
 config/name="godos"
-run/main_scene="uid://sfqi6fmqi4u2"
+run/main_scene="uid://c81xchf42cbqt"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Network="*res://system/network/network.gd"
-Notification="*res://system/interface/show_notification.gd"
 ClientConstants="*res://system/constants/client.gd"
 ServerConstants="*res://system/constants/server.gd"
 ClientGlobals="*res://system/globals/client.gd"
 ServerGlobals="*res://system/globals/server.gd"
-Fetch="*res://system/fetch.gd"
-Temp="*res://system/temp.gd"
+Client="*res://system/network/client.gd"
+Server="*res://system/network/server.gd"
+Confirmation="*res://system/ui/show_confirmation.gd"
+Notification="*res://system/ui/show_notification.gd"
+Fetch="*res://system/network/fetch.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=800
+window/size/viewport_height=600
 
 [gui]
 
