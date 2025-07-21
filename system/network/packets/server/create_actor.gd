@@ -15,7 +15,10 @@ func handle(actor_name: String, actor_sprite: String, _scene: SceneTree, peer_id
 		Server.send_to(peer_id, packet_id, ["", ["Não foi possível te localizar no servidor!"]])
 		return
 
-	var account_id: int = user["id"]
+	var account_id: int = user.get("id", null)
+	if account_id == null:
+		Server.send_to(peer_id, packet_id, ["", ["Não foi possível obter os dados da sua conta!"]])
+		return
 
 	var endpoint = ServerConstants.backend_endpoint + "actor"
 	var headers := {"Content-Type": "application/json"}
@@ -34,6 +37,11 @@ func handle(actor_name: String, actor_sprite: String, _scene: SceneTree, peer_id
 
 	if status_code != 201:
 		Server.send_to(peer_id, packet_id, ["", Fetch.format_errors(response_data)])
+		return
+
+	var actors: Array = user.get("actors", null)
+	if actors == null:
+		Server.send_to(peer_id, packet_id, ["", ["Aconteceu um erro ao tentar obter a lista de personagens!"]])
 		return
 
 	user["actors"].append(response_data)

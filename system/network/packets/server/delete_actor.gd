@@ -8,7 +8,7 @@ var packet_id: int = Packets.DELETE_ACTOR
 func handle(actor_id: int, _scene: SceneTree, peer_id: int) -> void:
 	var user: Dictionary = ServerGlobals.users.get(peer_id, null)
 	if user == null:
-		Server.send_to(peer_id, packet_id, [{}, ["Não foi possível te localizar no servidor!"]])
+		Server.send_to(peer_id, packet_id, [ {}, ["Não foi possível te localizar no servidor!"]])
 		return
 
 	var endpoint = ServerConstants.backend_endpoint + "actor/" + str(actor_id)
@@ -22,7 +22,16 @@ func handle(actor_id: int, _scene: SceneTree, peer_id: int) -> void:
 	var response_data = result[2]
 
 	if status_code != 200:
-		Server.send_to(peer_id, packet_id, [{}, Fetch.format_errors(response_data)])
+		Server.send_to(peer_id, packet_id, [ {}, Fetch.format_errors(response_data)])
+		return
+
+	var actors: Array = user.get("actors", null)
+	if actors == null:
+		Server.send_to(peer_id, packet_id, [ {}, ["Aconteceu um erro ao tentar obter a lista de personagens!"]])
+		return
+	
+	if actors.size() == 0:
+		Server.send_to(peer_id, packet_id, ["", ["Nenhum personagem encontrado para apagar!"]])
 		return
 
 	for i in user["actors"].size():

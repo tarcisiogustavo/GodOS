@@ -5,7 +5,7 @@ extends RefCounted
 var packet_id: int = Packets.DELETE_ACTOR
 
 
-func handle(success: String, errors: Array, scene: SceneTree) -> void:
+func handle(success: String, errors: Array, _scene: SceneTree) -> void:
 	if errors.size() > 0:
 		var messages := []
 		for e in errors:

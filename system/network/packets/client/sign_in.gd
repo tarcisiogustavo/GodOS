@@ -5,7 +5,7 @@ extends RefCounted
 var packet_id: int = Packets.SIGN_IN
 
 
-func handle(success: Dictionary, errors: Array, scene: SceneTree) -> void:
+func handle(_success: Dictionary, errors: Array, scene: SceneTree) -> void:
 	var sign_in_ui: SignInUI = scene.root.get_node("Main/MenuCanvas/SignIn")
 
 	if errors.size() > 0:

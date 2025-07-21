@@ -3,7 +3,7 @@
 **GodOS** é um sistema multiplayer dedicado, multiplataforma, desenvolvido na [Godot Engine](https://godotengine.org/) com foco em jogos multiplayer 2D (Não se limitando a 2D). Ele foi criado para suprir a necessidade da comunidade por uma solução moderna que substitua as antigas plataformas como **Eclipse Origins, Netplay** e o **VXA-OS**.
 
 
-## 🎯 Objetivo
+## Objetivo
 
 Fornecer uma base sólida, extensível para a criação de jogos online, focando em:
 
@@ -13,7 +13,7 @@ Fornecer uma base sólida, extensível para a criação de jogos online, focando
 - Sistemas iniciais.
 
 
-## 🕹️ Comparação com outros sistemas parecidos
+## Comparação com outros sistemas parecidos
 |Recurso|GodOS|EO Netplay|VXA-OS|
 |-----------------------------|------------------|----------------------|--------------------------|
 |Multiplataforma|✅|❌|❌|
@@ -21,12 +21,15 @@ Fornecer uma base sólida, extensível para a criação de jogos online, focando
 |Suporte ativo|Em andamento|Abandonado|Comunidade|
 
 
-## 🛠️ Tecnologias Usadas
-- Godot Engine 4.x
-- GDScript
-- ENet Network
+## Tecnologias Utilizadas
 
-## 📦 Instalação
+| Tecnologia      | Descrição                                      |
+|----------------|------------------------------------------------|
+| Godot 4.4      | Game Engine                                     |
+| GDScript       | Linguagem de script nativa da Godot             |
+| ENet           | Biblioteca de rede para comunicação eficiente   |
+
+## Instalação
 ```bash
 git clone https://github.com/seuusuario/GodOS.git
 
