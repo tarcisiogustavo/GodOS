@@ -3,4 +3,29 @@
 [ext_resource type="Script" uid="uid://bhecmvhnwy864" path="res://system/map/map.gd" id="1_1bm8w"]
 
 [node name="Map" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_1bm8w")
+
+[node name="Grounds" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Ground1" type="TileMapLayer" parent="Grounds"]
+
+[node name="Ground2" type="TileMapLayer" parent="Grounds"]
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Object1" type="TileMapLayer" parent="Objects"]
+
+[node name="Object2" type="TileMapLayer" parent="Objects"]
+
+[node name="Above" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Above1" type="TileMapLayer" parent="Above"]
+
+[node name="Above2" type="TileMapLayer" parent="Above"]
+
+[node name="Spawn" type="Node2D" parent="."]
+y_sort_enabled = true
