@@ -1,26 +1,28 @@
 class_name Entity
 extends Node2D
 
+enum AnimationState {
+	STOPPED,
+}
+
 @export_group("Settings")
-@export var _identifier: String = ""
+@export var identifier: String = ""
 @export var map_position: Vector2i = Vector2i(1, 1)
-@export var _controllable: bool = false
-@export var move_speed: float = 150.0
 
 @export_group("Nodes")
-@export var _sprite: Sprite2D
-@export var _animation: AnimationPlayer
-@export var _camera: Camera2D
+@export var sprite: Sprite2D
+@export var animation: AnimationPlayer
 @export var current_map: Map = null
 
-var is_moving: bool = false
+@export_group("Animation")
+@export var animation_prefixes := {
+	"STOPPED": "stopped"
+}
+
 var current_direction: Vector2 = Vector2.ZERO
-var animation_state: String = "idle"
-
-
-func _ready() -> void:
-	if _controllable:
-		_camera.enabled = true
+var previous_direction: Vector2 = Vector2.DOWN
+var current_animation: AnimationState = AnimationState.STOPPED
+var is_animation_locked: bool = false
 
 
 func _process(_delta: float) -> void:
@@ -28,91 +30,31 @@ func _process(_delta: float) -> void:
 
 
 func update_animation() -> void:
-	if not _animation:
+	if not animation or is_animation_locked:
 		return
 
-	var new_animation: String = ""
+	var direction_to_use = current_direction if current_direction != Vector2.ZERO else previous_direction
+	var new_animation := _get_animation_name(current_animation)
 
-	if is_moving:
-		# Determina a direção da animação baseada no movimento
-		if abs(current_direction.x) > abs(current_direction.y):
-			new_animation = "walking_right" if current_direction.x > 0 else "walking_left"
-		else:
-			new_animation = "walking_down" if current_direction.y > 0 else "walking_top"
+	if current_direction != Vector2.ZERO:
+		previous_direction = current_direction
+
+	if animation.current_animation != new_animation and animation.has_animation(new_animation):
+		animation.play(new_animation)
+
+
+func _get_animation_name(state: AnimationState) -> String:
+	var direction_suffix = _get_direction_suffix()
+	var key: String = AnimationState.keys()[int(state)]
+
+	var prefix = animation_prefixes.get(key, "stopped")
+	return prefix + "_" + direction_suffix
+
+
+func _get_direction_suffix() -> String:
+	var direction_to_use = current_direction if current_direction != Vector2.ZERO else previous_direction
+
+	if abs(direction_to_use.x) > abs(direction_to_use.y):
+		return "right" if direction_to_use.x > 0 else "left"
 	else:
-		if abs(current_direction.x) > abs(current_direction.y):
-			new_animation = "stopped_right" if current_direction.x > 0 else "stopped_left"
-		else:
-			new_animation = "stopped_down" if current_direction.y > 0 else "stopped_top"
-
-	if animation_state != new_animation and _animation.has_animation(new_animation):
-		animation_state = new_animation
-		_animation.play(new_animation)
-
-
-func get_animation() -> AnimationPlayer:
-	return _animation
-
-
-func set_identifier(identifier: String) -> void:
-	_identifier = identifier
-
-
-func set_sprite(sprite: String) -> void:
-	var texture: CompressedTexture2D = load("res://assets/graphics/entities/" + sprite)
-	_sprite.texture = texture
-
-
-func set_map_position(new_position: Vector2i) -> void:
-	map_position = new_position
-
-
-func set_map(map: Map) -> void:
-	current_map = map
-
-
-func set_controllable(controllable: bool) -> void:
-	_controllable = controllable
-	_camera.enabled = controllable
-
-
-func move_to(direction: Vector2) -> void:
-	if not current_map:
-		return
-
-	if not is_moving:
-		var movement_direction: Vector2i = Vector2i(direction)
-		var new_map_position = current_map.move_entity(self, movement_direction)
-
-		if new_map_position != position:
-			is_moving = true
-			current_direction = direction
-
-			var distance = (new_map_position - position).length()
-			var duration = distance / move_speed
-
-			var tween = create_tween()
-			tween.tween_property(self, "position", new_map_position, duration)
-			tween.tween_callback(func():
-				is_moving = false
-				current_direction = direction
-			)
-
-
-func handle_input() -> void:
-	if is_moving:
-		return
-
-	var direction = Vector2.ZERO
-
-	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("walking_left"):
-		direction = Vector2.LEFT
-	elif Input.is_action_pressed("ui_right") or Input.is_action_pressed("walking_right"):
-		direction = Vector2.RIGHT
-	elif Input.is_action_pressed("ui_up") or Input.is_action_pressed("walking_up"):
-		direction = Vector2.UP
-	elif Input.is_action_pressed("ui_down") or Input.is_action_pressed("walking_down"):
-		direction = Vector2.DOWN
-
-	if direction != Vector2.ZERO:
-		move_to(direction)
+		return "down" if direction_to_use.y > 0 else "top"

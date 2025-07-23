@@ -1,12 +1,13 @@
 class_name Map extends Node2D
 
-
-@export var tile_size: Vector2i = Vector2i(32, 32)
+@export_group("Settings")
+@export var identifier: String = ""
+@export var tile_size: int = 64
+@export_group("Nodes")
 @export var layers: Array[TileMapLayer]
-@export var entities: Array[Entity]
-
-@onready var spawn_location: Node2D = $Spawn
-@export var actor_scene: PackedScene
+@export var spawn_location: Node2D
+@export_group("Objects")
+@export var entities: Array[PackedScene]
 
 
 # Define a área total válida do mapa combinando todas as camadas dos layers
@@ -21,7 +22,6 @@ var blocked_direction_tiles: Array = []
 
 
 func _ready() -> void:
-
 	# Se não houver layer no array, não acontece nada
 	if layers.is_empty():
 		return
@@ -31,6 +31,12 @@ func _ready() -> void:
 
 	_initialize_tile_arrays()
 	_populate_blocked_tiles()
+
+	for scene in entities:
+		if scene and scene is PackedScene:
+			var instance = scene.instantiate()
+			if instance is Entity:
+				add_entity(instance, instance.map_position)
 
 
 func _calculate_combined_rect() -> Rect2i:
@@ -96,12 +102,12 @@ func _populate_blocked_tiles() -> void:
 
 
 func world_to_grid(world_pos: Vector2) -> Vector2i:
-	var grid_pos = world_pos / 64
+	var grid_pos = world_pos / tile_size
 	return Vector2i(grid_pos.x, grid_pos.y)
 
 
 func grid_to_world(grid_pos: Vector2i) -> Vector2:
-	return Vector2(grid_pos.x * 64, grid_pos.y * 64)
+	return Vector2(grid_pos.x * tile_size, grid_pos.y * tile_size)
 
 
 func is_cell_occupied(grid_pos: Vector2i) -> bool:
@@ -115,8 +121,6 @@ func is_cell_occupied(grid_pos: Vector2i) -> bool:
 
 
 func add_entity(entity: Entity, grid_pos: Vector2i) -> void:
-	entities.append(entity)
-
 	# Ajusta as coordenadas para o array 2D
 	var adjusted_x = grid_pos.x - map_bounds.position.x
 	var adjusted_y = grid_pos.y - map_bounds.position.y
@@ -128,7 +132,7 @@ func add_entity(entity: Entity, grid_pos: Vector2i) -> void:
 	# Atualiza a posição da entidade no mundo
 	entity.map_position = grid_pos
 	entity.position = grid_to_world(grid_pos)
-	entity.set_map(self)
+	entity.current_map = self
 
 	# Spawna a entidade no spawn location
 	spawn_location.add_child(entity)
@@ -148,11 +152,7 @@ func _check_direction_block(block_dir: Vector2i, direction: Vector2i) -> bool:
 		(direction == Vector2i.LEFT and block_dir.x < 0) or
 		(direction == Vector2i.RIGHT and block_dir.x > 0) or
 		(direction == Vector2i.UP and block_dir.y < 0) or
-		(direction == Vector2i.DOWN and block_dir.y > 0) or
-		(direction == Vector2i(-1, -1) and block_dir.x < 0 and block_dir.y < 0) or
-		(direction == Vector2i(1, -1) and block_dir.x > 0 and block_dir.y < 0) or
-		(direction == Vector2i(1, 1) and block_dir.x > 0 and block_dir.y > 0) or
-		(direction == Vector2i(-1, 1) and block_dir.x < 0 and block_dir.y > 0)
+		(direction == Vector2i.DOWN and block_dir.y > 0)
 	)
 
 
@@ -168,22 +168,6 @@ func _is_direction_blocked(grid_pos: Vector2i, direction: Vector2i) -> bool:
 	var block_dir_from = blocked_direction_tiles[adjusted_x][adjusted_y]
 	if _check_direction_block(block_dir_from, direction):
 		return true
-
-	var is_diagonal = direction.x != 0 and direction.y != 0
-	# Verifica as células adjacentes ao movimento diagonal
-	if is_diagonal:
-		# Célula na direção x
-		var adj_x1 = adjusted_x + direction.x
-		var adj_y1 = adjusted_y
-
-		# Célula na direção y
-		var adj_x2 = adjusted_x
-		var adj_y2 = adjusted_y + direction.y
-
-		# Se ambas as células adjacentes estão dentro dos limites e bloqueadas, impede o movimento
-		if (_is_within_bounds(adj_x1, adj_y1) and blocked_tiles[adj_x1][adj_y1] and
-			_is_within_bounds(adj_x2, adj_y2) and blocked_tiles[adj_x2][adj_y2]):
-			return true
 
 	# Verifica a célula de destino
 	var adjusted_x_to = adjusted_x + direction.x
@@ -223,7 +207,6 @@ func move_entity(entity: Entity, direction: Vector2i) -> Vector2:
 
 		if (old_x >= 0 and old_x < map_bounds.size.x and old_y >= 0 and old_y < map_bounds.size.y and
 			new_x >= 0 and new_x < map_bounds.size.x and new_y >= 0 and new_y < map_bounds.size.y):
-
 			# Libera a célula antiga
 			ocuped_tiles[old_x][old_y] = null
 			# Marca a nova célula como ocupada
@@ -232,5 +215,5 @@ func move_entity(entity: Entity, direction: Vector2i) -> Vector2:
 			return entity.position
 
 	# Altera a grid da entidade para a nova
-	entity.set_map_position(new_grid_pos)
+	entity.map_position = new_grid_pos
 	return grid_to_world(new_grid_pos)

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6sojb8hisccc"]
-
-[ext_resource type="Script" uid="uid://3hw52iibxf7x" path="res://database/components/state/stopped/stopped.gd" id="1_e4dy8"]
-
-[node name="Stopped" type="Node"]
-script = ExtResource("1_e4dy8")

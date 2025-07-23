@@ -10,7 +10,12 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if not _entity or not _entity._controllable:
+	if not _entity or not _entity.controllable:
+		return
+
+	_handle_action_inputs()
+
+	if _entity.is_animation_locked:
 		return
 
 	if _entity.is_moving:
@@ -18,8 +23,13 @@ func _physics_process(_delta: float) -> void:
 
 	var direction := _get_input_direction()
 
-	if direction != Vector2.ZERO:
-		_entity.move_to(direction)
+	#if direction != Vector2.ZERO:
+		#_entity.move_to(direction)
+
+
+func _handle_action_inputs() -> void:
+	if Input.is_action_just_pressed("attack"):
+		_entity.attack()
 
 
 func _get_input_direction() -> Vector2:
