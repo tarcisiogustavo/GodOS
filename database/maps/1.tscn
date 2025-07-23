@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://cm4ar10ji38mk"]
 
 [ext_resource type="PackedScene" uid="uid://c5ygv42hjcf2l" path="res://system/map/map.tscn" id="1_d3vk8"]
-[ext_resource type="PackedScene" uid="uid://bemt6wbicpcv8" path="res://system/entity/entity.tscn" id="2_mm5fh"]
+[ext_resource type="PackedScene" uid="uid://clh64pv8rnv8g" path="res://database/entities/actor/actor.tscn" id="2_mm5fh"]
 [ext_resource type="Texture2D" uid="uid://butmslgptq3mw" path="res://assets/graphics/tilesets/002-Woods01.png" id="2_whqnc"]
 [ext_resource type="Texture2D" uid="uid://cwdiyv2hwx113" path="res://assets/graphics/tilesets/004-Mountain01.png" id="3_mm5fh"]
 

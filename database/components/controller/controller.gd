@@ -23,8 +23,8 @@ func _physics_process(_delta: float) -> void:
 
 	var direction := _get_input_direction()
 
-	#if direction != Vector2.ZERO:
-		#_entity.move_to(direction)
+	if direction != Vector2.ZERO:
+		_entity.move_to(direction)
 
 
 func _handle_action_inputs() -> void:

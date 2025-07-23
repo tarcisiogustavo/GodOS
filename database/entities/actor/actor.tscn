@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://clh64pv8rnv8g"]
+
+[ext_resource type="PackedScene" uid="uid://bemt6wbicpcv8" path="res://system/entity/entity.tscn" id="1_78ibm"]
+[ext_resource type="Script" uid="uid://cu03nac0e6oud" path="res://database/entities/actor/actor.gd" id="2_7vmro"]
+[ext_resource type="Script" uid="uid://bg82ujdb6vb5" path="res://database/components/controller/controller.gd" id="3_7ktaq"]
+
+[node name="Actor" node_paths=PackedStringArray("camera") instance=ExtResource("1_78ibm")]
+script = ExtResource("2_7vmro")
+controllable = true
+camera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
+
+[node name="Controller" type="Node2D" parent="." index="3"]
+script = ExtResource("3_7ktaq")
+metadata/_custom_type_script = "uid://bg82ujdb6vb5"
